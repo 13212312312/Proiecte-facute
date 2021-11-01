@@ -1,0 +1,64 @@
+#include <Servo.h>
+int motorPin = 2;
+Servo deget1;
+Servo deget2;
+Servo deget3;
+Servo deget4;
+void setup()
+{
+  deget1.attach(2);
+  deget2.attach(3);
+  deget3.attach(4);
+  deget4.attach(5);
+  Serial.begin(9600);
+  deget1.write(90); 
+  deget2.write(90); 
+  deget3.write(90); 
+  deget4.write(90); 
+}
+
+void loop()
+{
+  int value=0;
+  int ok=1,misca=0;
+  if(Serial.available()>0)
+  {value=Serial.read();
+  Serial.println(value,DEC);
+  if(value==49)
+  deget1.write(90);
+  if(value==50)
+  deget1.write(0);
+  if(value==51)
+  deget2.write(90);
+  if(value==52)
+  deget2.write(0);
+  if(value==53)
+  deget3.write(90);
+  if(value==54)
+  deget3.write(0);
+  if(value==55)
+  deget4.write(90);
+  if(value==56)
+  deget4.write(0);
+  if(value=='p')
+  {deget1.write(0);
+  deget2.write(0);
+  deget3.write(0);
+  deget4.write(0);}
+  if(value=='h')
+  {deget1.write(90);
+  deget2.write(90);
+  deget3.write(90);
+  deget4.write(90);}
+  if(value=='f')
+  {deget1.write(90);
+  deget2.write(90);
+  deget3.write(0);
+  deget4.write(0);}
+  if(value=='m')
+  {deget1.write(0);
+  deget2.write(90);
+  deget3.write(0);
+  deget4.write(0);}
+  }
+}
